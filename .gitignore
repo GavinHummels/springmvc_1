@@ -1,7 +1,7 @@
 ### for Eclipse
-/.settings
-/.classpath
-/.project
+.settings
+.classpath
+.project
 
 *.class
 
@@ -9,3 +9,4 @@
 *.jar
 *.war
 *.ear
+/build
