@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.table.TableStringConverter;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -25,7 +24,22 @@ import com.springmvc.entities.User;
 public class SpringMVCTest {
 
 	private static final String SUCCESS = "success";
+	
+	@RequestMapping("/testRedirect")
+	public String testRedirect(){
+		System.out.println("testRedirect");
+		return "redirect:/index.jsp";
+	}
+	
 
+	//自定义视图
+	@RequestMapping("/testView")
+	public String testView(){
+		System.out.println("testView");
+		return "helloView";
+	}
+	
+	
 	@RequestMapping("/testViewAndViewResolver")
 	public String testViewAndViewResolver() {
 		System.out.println("testViewAndViewResolver");
