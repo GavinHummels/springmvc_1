@@ -10,4 +10,4 @@
 *.war
 *.ear
 
-/build/
+/build/*
