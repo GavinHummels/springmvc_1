@@ -2,6 +2,8 @@ package com.springmvc.crud.handlers;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -52,13 +54,15 @@ public class EmployeeHandler {
 	}
 
 	@RequestMapping(value = "/emp", method = RequestMethod.POST)
-	public String save(Employee employee,BindingResult result) {
+	public String save(@Valid Employee employee, BindingResult result, Map<String, Object> map) {
 		System.out.println("save: " + employee);
-		if(result.getErrorCount()>0){
+		if (result.getErrorCount() > 0) {
 			System.out.println("出错了！");
-			for(FieldError error : result.getFieldErrors()){
-				System.out.println(error.getField()+":"+error.getDefaultMessage());
+			for (FieldError error : result.getFieldErrors()) {
+				System.out.println(error.getField() + ":" + error.getDefaultMessage());
 			}
+			map.put("departments", departmentDao.getDepartments());
+			return "input";
 		}
 		employeeDao.save(employee);
 		return "redirect:/emps";
@@ -68,10 +72,10 @@ public class EmployeeHandler {
 	public String input(Map<String, Object> map) {
 		map.put("departments", departmentDao.getDepartments());
 		map.put("employee", new Employee()); // 不需要表单回显，故新建个对象
-//		Map<String,String> genders = new HashMap<>();
-//		genders.put("1","Male");
-//		genders.put("0","Female");
-//		map.put("genders", genders);
+		// Map<String,String> genders = new HashMap<>();
+		// genders.put("1","Male");
+		// genders.put("0","Female");
+		// map.put("genders", genders);
 		return "input";
 	}
 
@@ -80,9 +84,9 @@ public class EmployeeHandler {
 		map.put("employees", employeeDao.getAll());
 		return "list";
 	}
-	
-//	@InitBinder
-//	public void initBinder(WebDataBinder webDataBinder){
-//		webDataBinder.setDisallowedFields("lastName"); //不进行赋值
-//	}
+
+	// @InitBinder
+	// public void initBinder(WebDataBinder webDataBinder){
+	// webDataBinder.setDisallowedFields("lastName"); //不进行赋值
+	// }
 }
