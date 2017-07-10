@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.springmvc.crud.dao.EmployeeDao;
+import com.springmvc.crud.entities.Employee;
 import com.springmvc.entities.User;
 
 //@SessionAttributes(value = { "user" }, types = { String.class })
@@ -23,23 +26,31 @@ import com.springmvc.entities.User;
 @Controller
 public class SpringMVCTest {
 
+	@Autowired
+	private EmployeeDao employeeDao;
+
 	private static final String SUCCESS = "success";
-	
+
+	@RequestMapping(value = "/testConversionServiceConverer", method = RequestMethod.POST)
+	public String testConverter(@RequestParam("employee") Employee employee) {
+		System.out.println("save: " + employee);
+		employeeDao.save(employee);
+		return "redirect:/emps";
+	}
+
 	@RequestMapping("/testRedirect")
-	public String testRedirect(){
+	public String testRedirect() {
 		System.out.println("testRedirect");
 		return "redirect:/index.jsp";
 	}
-	
 
-	//自定义视图
+	// 自定义视图
 	@RequestMapping("/testView")
-	public String testView(){
+	public String testView() {
 		System.out.println("testView");
 		return "helloView";
 	}
-	
-	
+
 	@RequestMapping("/testViewAndViewResolver")
 	public String testViewAndViewResolver() {
 		System.out.println("testViewAndViewResolver");

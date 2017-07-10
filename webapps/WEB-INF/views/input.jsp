@@ -13,9 +13,10 @@
 </head>
 <body>
 
-	<form action="testConversionServiceConverer" method="post">
+	<form action="springmvc/testConversionServiceConverer" method="post">
 		<!-- lastname-email-gender-department.id 例如：GG-gg@qq.com-0-105 -->
 		Employee: <input type="text" name="employee">
+		<input type="submit" value="Submit">
 	</form>
 	<br><br>
 	<!-- 
@@ -60,10 +61,10 @@
 	 		2. 数据类型格式化
 	 		3. 数据校验
 	 	 -->
-	 	 <!-- 
-	 	 Birth: <form:input path="birth"/>
+	 	Birth: <form:input path="birth"/>
 	 	<br><br>
-	 	  -->
+	 	Salary <form:input path="salary"/>
+	 	<br><br>
 	 	<input type="submit" value="Submit">
 	</form:form>
 
