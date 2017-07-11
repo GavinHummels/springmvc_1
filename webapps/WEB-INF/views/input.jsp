@@ -29,9 +29,13 @@
 	 	这里的 action 使用绝对路径，${pageContext.request.contextPath}，后面所有的路径都建议要绝对路径
 	  -->
 	<form:form action="${pageContext.request.contextPath }/emp" method="POST" modelAttribute="employee">
+		
+		<form:errors path="*"></form:errors>
+		<br><br>
 		<!-- path 属性对应 html 表单标签的 name 属性值 -->
 	 	<c:if test="${employee.id == null}">
 		 	LastName: <form:input path="lastName" />
+		 	<form:errors path="lastName" cssStyle="color:red"></form:errors>
 	 	</c:if>
 		<c:if test="${employee.id != null}">
 			<form:hidden path="id"/>
@@ -44,6 +48,7 @@
 			 	
 		<br><br>
 	 	Email: <form:input path="email" />
+	 	<form:errors path="email" cssStyle="color:red"></form:errors>
 		<br><br>
 		<%
 	 		Map<String,String> genders = new HashMap();
@@ -60,8 +65,18 @@
 	 		1. 数据类型转换
 	 		2. 数据类型格式化
 	 		3. 数据校验
+	 		  1). 如何校验？ 注解？
+	 		    ①. 使用 JSR 303 验证标准
+	 		    ②. 加入 hibernate validate 验证框架的 jar 包
+	 		    ③. 在 SpringMVC 配置文件中添加 <mvc:annotation-driven />
+	 		    ④. 需要在 bean 的属性上添加对应的注解
+	 		    ⑤. 在目标方法 bean 类型的前面添加 @Valid 注解
+	 		  2). 验证出错转向到哪一个页面？
+	 		        注意：需校验的 Bean 对象和其绑定结果对象或错误对象时成对出现的，它们之间不允许声明其他的入参
+	 		  3). 错误消息？ 如何显示，如何把错误消息进行国际化
 	 	 -->
 	 	Birth: <form:input path="birth"/>
+	 	<form:errors path="birth" cssStyle="color:red"></form:errors>
 	 	<br><br>
 	 	Salary <form:input path="salary"/>
 	 	<br><br>
