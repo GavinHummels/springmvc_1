@@ -25,6 +25,16 @@
 </head>
 <body>
 
+	<a href="springmvc/testResponseEntity">Test ResponseEntity</a>
+	<br><br>
+
+	<form action="springmvc/testHttpMessageConverter" method="post" enctype="multipart/form-data">
+		File: <input type="file" name="file" >
+		Desc: <input type="text" name="desc">
+		<input type="submit" value="submit">
+	</form>
+	<br><br>
+
 	<a href="springmvc/testJson" id="testJson">Test Json</a>
 	<br>
 	<br>

@@ -1,22 +1,31 @@
 package com.springmvc.handlers;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springmvc.crud.dao.EmployeeDao;
@@ -32,10 +41,34 @@ public class SpringMVCTest {
 	private EmployeeDao employeeDao;
 
 	private static final String SUCCESS = "success";
-	
+
+	@RequestMapping("/testResponseEntity")
+	public ResponseEntity<byte[]> testResponseEntity(HttpSession session) throws IOException {
+		byte[] body = null;
+		ServletContext servletContext = session.getServletContext();
+		InputStream inputStream = servletContext.getResourceAsStream("/files/abc.txt");
+		body = new byte[inputStream.available()];
+		inputStream.read(body);
+
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add("Content-Disposition", "attachment;filename=abc.txt");
+
+		HttpStatus statusCode = HttpStatus.OK;
+
+		ResponseEntity<byte[]> responseEntity = new ResponseEntity<byte[]>(body, httpHeaders, statusCode);
+		return responseEntity;
+	}
+
+	@ResponseBody
+	@RequestMapping("/testHttpMessageConverter")
+	public String testHttpMessageConverter(@RequestBody String body) {
+		System.out.println("body: " + body);
+		return "HelloWorld! " + new Date();
+	}
+
 	@ResponseBody
 	@RequestMapping("/testJson")
-	public Collection<Employee> testJson(){
+	public Collection<Employee> testJson() {
 		return employeeDao.getAll();
 	}
 
