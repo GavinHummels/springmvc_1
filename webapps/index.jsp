@@ -25,6 +25,9 @@
 </head>
 <body>
 
+	<a href="springmvc/testExceptionExceptionResolver?i=10">Test ExceptionExceptionResolver</a>
+	<br><br>
+
 	<form action="springmvc/testFileUpload" method="post" enctype="multipart/form-data">
 		File: <input type="file" name="file" >
 		Desc: <input type="text" name="desc">
