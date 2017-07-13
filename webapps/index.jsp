@@ -25,6 +25,16 @@
 </head>
 <body>
 
+	<form action="springmvc/testFileUpload" method="post" enctype="multipart/form-data">
+		File: <input type="file" name="file" >
+		Desc: <input type="text" name="desc">
+		<input type="submit" value="submit">
+	</form>
+	<br><br>
+
+	<a href="springmvc/i18n">I18N PAGE</a>
+	<br><br>
+
 	<!-- 
 		关于国际化：
 		1. 在页面上能够根据浏览器语言设置的情况对文本（不是内容），时间，数值进行本地化处理
