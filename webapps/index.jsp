@@ -25,6 +25,9 @@
 </head>
 <body>
 
+	<a href="springmvc/testResponseStatusExceptionResolver">Test ResponseStatusExceptionResolver</a>
+	<br><br>
+
 	<a href="springmvc/testExceptionExceptionResolver?i=10">Test ExceptionExceptionResolver</a>
 	<br><br>
 
