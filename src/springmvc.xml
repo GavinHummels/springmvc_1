@@ -79,4 +79,16 @@
 		</property>
 	</bean>
 	
+	<!-- 配置使用 SimpleMappingExceptionResolver 来映射异常 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<!-- 可配置异常属性值，默认是exception -->
+		<property name="exceptionAttribute" value="ex"></property>
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.ArrayIndexOutOfBoundsException">error</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
 </beans>

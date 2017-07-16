@@ -25,7 +25,7 @@ public class FirstInterceptor implements HandlerInterceptor {
 
 	
 	/*
-	 * 调用目标方法之后，渲染视图之前
+	 * 调用目标方法，得到ModelAndView之后，渲染视图之前
 	 * 可以对请求域中的属性（request）或视图（modelAndView）做出修改
 	 * */
 	@Override

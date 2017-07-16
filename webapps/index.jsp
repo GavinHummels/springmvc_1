@@ -24,8 +24,13 @@
 </script>
 </head>
 <body>
+	<a href="springmvc/testSimpleMappingExceptionResolver?i=2">Test SimpleMappingExceptionResolver</a>
+	<br><br>
 
-	<a href="springmvc/testResponseStatusExceptionResolver">Test ResponseStatusExceptionResolver</a>
+	<a href="springmvc/testDefaultHandlerExceptionResolver">Test DefaultHandlerExceptionResolver</a>
+	<br><br>
+
+	<a href="springmvc/testResponseStatusExceptionResolver?i=10">Test ResponseStatusExceptionResolver</a>
 	<br><br>
 
 	<a href="springmvc/testExceptionExceptionResolver?i=10">Test ExceptionExceptionResolver</a>
